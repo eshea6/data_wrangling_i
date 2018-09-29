@@ -40,5 +40,18 @@ pulse_data = read_sas("./data/public_pulse_data.sas7bdat")
 head(pulse_data, 5)
 ```
 
+```{r comp_baser}
+pups_base = read.csv("./data/FAS_pups.csv")
+pups_readr = read_csv("./data/FAS_pups.csv")
+
+pups_base
+pups_readr
+
+pups_base = janitor::clean_names(pups_base)
+pups_readr = janitor::clean_names(pups_readr)
+
+pups_base$S
+pups_readr$S
+```
 
 
