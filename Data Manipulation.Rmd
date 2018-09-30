@@ -184,3 +184,14 @@ read_csv("./data/FAS_litters.csv", col_types = "ccddiiii") %>%
   lm(gd18_weight ~ gd0_weight, data = .)
 ```
 
+Learning Assessment: Write a chain of commands that: 1) loads the pups data 2) cleans the variable names
+3) filters the data to include only pups with sex 1 4) removes the PD ears variable 5)creates a variable that indicates whether PD pivot is 7 or more days.
+
+```{r}
+read_csv("./data/FAS_pups.csv", col_types = "ciiiii") %>% 
+  janitor::clean_names() %>% 
+  filter(sex == 1) %>% 
+  select(-pd_ears) %>% 
+  mutate(pd_pivot_gt7 = pd_pivot > 7)
+```
+

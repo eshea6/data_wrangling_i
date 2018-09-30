@@ -833,6 +833,26 @@ litters_data_clean</code></pre>
 ## Coefficients:
 ## (Intercept)   gd0_weight  
 ##      15.342        1.084</code></pre>
+<p>Learning Assessment: Write a chain of commands that: 1) loads the pups data 2) cleans the variable names 3) filters the data to include only pups with sex 1 4) removes the PD ears variable 5)creates a variable that indicates whether PD pivot is 7 or more days.</p>
+<pre class="r"><code>read_csv(&quot;./data/FAS_pups.csv&quot;, col_types = &quot;ciiiii&quot;) %&gt;% 
+  janitor::clean_names() %&gt;% 
+  filter(sex == 1) %&gt;% 
+  select(-pd_ears) %&gt;% 
+  mutate(pd_pivot_gt7 = pd_pivot &gt; 7)</code></pre>
+<pre><code>## # A tibble: 155 x 6
+##    litter_number   sex pd_eyes pd_pivot pd_walk pd_pivot_gt7
+##    &lt;chr&gt;         &lt;int&gt;   &lt;int&gt;    &lt;int&gt;   &lt;int&gt; &lt;lgl&gt;       
+##  1 #85               1      13        7      11 FALSE       
+##  2 #85               1      13        7      12 FALSE       
+##  3 #1/2/95/2         1      13        7       9 FALSE       
+##  4 #1/2/95/2         1      13        8      10 TRUE        
+##  5 #5/5/3/83/3-3     1      13        8      10 TRUE        
+##  6 #5/5/3/83/3-3     1      14        6       9 FALSE       
+##  7 #5/4/2/95/2       1      14        5       9 FALSE       
+##  8 #4/2/95/3-3       1      13        6       8 FALSE       
+##  9 #4/2/95/3-3       1      13        7       9 FALSE       
+## 10 #2/2/95/3-2       1      NA        8      10 TRUE        
+## # ... with 145 more rows</code></pre>
 </div>
 
 
