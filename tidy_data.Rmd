@@ -142,11 +142,17 @@ Learning Assessment: The datasets in this zip file contain de-identified respons
 
 ```{r}
 os_data = read_csv("./survey_results/surv_os.csv") %>%
-  janitor::clean_names()
+  janitor::clean_names() %>% 
+  rename(id = what_is_your_uni, os = what_operating_system_do_you_use)
 
 prog_git_data = read_csv("./survey_results/surv_program_git.csv") %>% 
-  janitor::clean_names()
+  janitor::clean_names() %>% 
+  rename(id = what_is_your_uni, 
+         prog = what_is_your_degree_program,
+         git_exp = which_most_accurately_describes_your_experience_with_git)
 
-surv_data = left_join(os_data, prog_git_data)
+left_join(os_data, prog_git_data)
+inner_join(os_data, prog_git_data)
+anti_join(os_data, prog_git_data)
+anti_join(prog_git_data, os_data)
 ```
-
