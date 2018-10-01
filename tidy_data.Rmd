@@ -137,3 +137,16 @@ Create joined data:
 ```{r}
 fas_data = left_join(pup_data, litter_data, by = "litter_number")
 ```
+
+Learning Assessment: The datasets in this zip file contain de-identified responses to surveys included in Homeworks 0 and 1. Both contain a unique student identifier; the first has reponses to a question about operating systems, and the second has responses to questions about degree program and git experience. Write a code chunk that imports and cleans both datasets, and then joins them.
+
+```{r}
+os_data = read_csv("./survey_results/surv_os.csv") %>%
+  janitor::clean_names()
+
+prog_git_data = read_csv("./survey_results/surv_program_git.csv") %>% 
+  janitor::clean_names()
+
+surv_data = left_join(os_data, prog_git_data)
+```
+

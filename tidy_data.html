@@ -473,6 +473,24 @@ litter_data = read_csv(&quot;./data/FAS_litters.csv&quot;, col_types = &quot;ccd
     group = tolower(group))</code></pre>
 <p>Create joined data:</p>
 <pre class="r"><code>fas_data = left_join(pup_data, litter_data, by = &quot;litter_number&quot;)</code></pre>
+<p>Learning Assessment: The datasets in this zip file contain de-identified responses to surveys included in Homeworks 0 and 1. Both contain a unique student identifier; the first has reponses to a question about operating systems, and the second has responses to questions about degree program and git experience. Write a code chunk that imports and cleans both datasets, and then joins them.</p>
+<pre class="r"><code>os_data = read_csv(&quot;./survey_results/surv_os.csv&quot;) %&gt;%
+  janitor::clean_names()</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `What is your UNI?` = col_character(),
+##   `What operating system do you use?` = col_character()
+## )</code></pre>
+<pre class="r"><code>prog_git_data = read_csv(&quot;./survey_results/surv_program_git.csv&quot;) %&gt;% 
+  janitor::clean_names()</code></pre>
+<pre><code>## Parsed with column specification:
+## cols(
+##   `What is your UNI?` = col_character(),
+##   `What is your degree program?` = col_character(),
+##   `Which most accurately describes your experience with Git?` = col_character()
+## )</code></pre>
+<pre class="r"><code>surv_data = left_join(os_data, prog_git_data)</code></pre>
+<pre><code>## Joining, by = &quot;what_is_your_uni&quot;</code></pre>
 </div>
 
 
